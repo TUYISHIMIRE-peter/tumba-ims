@@ -1,0 +1,81 @@
+{% extends '/Admin/base.html' %}
+{% block main %}
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{'Home'}}">Home</a></li>
+          <li class="breadcrumb-item active">Non consumables Items</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Non consumables Items</h5>
+              <table id='empTable' class='display dataTable' width='100%' >
+               <thead>
+                 <tr>
+                    
+                   <th>Name</th>
+                    <th>Code</th>
+                   <th>Serial Number</th>
+                   <th>Status</th>
+                   <th>Availablity</th>
+                   <th>Location</th>
+                   <th>Date Registered</th>
+                   <th>borrowed by</th>
+                   <th colspan="2" class="text-center">Action</th>
+                 </tr>
+               </thead>
+              </table>
+              <script>
+                $(document).ready(function() {
+                 
+                  
+                    var empDataTable = $('#empTable').DataTable({
+                                'processing': true,
+                                'serverSide': true,
+                                'serverMethod': 'post',
+                                'ajax': {
+                                    'url':'/non-data'
+                                },
+                                'lengthMenu': [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+                                searching: true,
+                                sort: false,
+                                "serverSide": true,
+                                'columns': [
+                                    
+                                    { data: 'item_name' },
+                                    { data: 'item_code' },
+                                    { data: 'item_status' },
+                                    { data: 'item_serial_number' },
+                                    { data: 'availablity' },
+                                    { data: 'item_location' },
+                                    { data: 'date_registered' },
+                                    { data: 'borrowed_to' },
+                                ]
+                            });
+                 
+                });
+                 
+                </script>
+              <!-- End Table with stripped rows -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+  {% endblock %}
+  {% block scripts %}
+  {% endblock %}
+ 
